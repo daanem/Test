@@ -1,0 +1,2149 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/10/2021 10:19:19 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="INTEG-PC10"
+  DTS:CreatorName="INTEGPRO\daniel.markgren"
+  DTS:DTSID="{DC416216-1D31-4B76-B151-4F9B534B04C3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="110"
+  DTS:VersionGUID="{2FC5DF79-B64C-49DD-B05B-5E878C096AA3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Activities CSV file connection]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{F5551550-50CC-4B44-BC35-EA0E5D840261}"
+      DTS:ObjectName="Activities CSV file connection">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::VAR_Complete_FilePath]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1053"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\Testarkiv\Activities_202111010802.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="id"
+              DTS:DTSID="{3263AC5C-63DE-472F-8B7A-DCF6CB9615EC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="name"
+              DTS:DTSID="{F3D3B630-8DAE-438E-ABC2-65BDD07D26A0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="distance"
+              DTS:DTSID="{9DA43B83-9278-430F-A791-84B29D3D6552}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="start_date_local"
+              DTS:DTSID="{F373CE35-B2B8-4608-ADE4-269208ABF0B8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="moving_time"
+              DTS:DTSID="{FB8560EE-281C-4496-912A-2D6161FA3466}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="type"
+              DTS:DTSID="{C818DF09-CEFE-43CB-8E39-871EBBCAF92A}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DB connection]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9859E8A1-FCB7-497D-879C-F4D9D368DB97}"
+      DTS:ObjectName="DB connection">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[$Package::PARAM_initial_catalog]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Package::PARAM_ServerName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=Strava;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{A5C859B3-47FC-4A82-BF81-0DC7DDD6A350}"
+      DTS:ObjectName="PARAM_FilePath">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">C:\Testarkiv\</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{594EE740-16DA-4C95-912E-AE7AB3BDA3E6}"
+      DTS:ObjectName="PARAM_initial_catalog">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Strava</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="11"
+      DTS:DTSID="{BE455B5B-105B-4F15-8C7C-8AFDE789343A}"
+      DTS:ObjectName="PARAM_keep_csv_file">
+      <DTS:Property
+        DTS:DataType="11"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="11"
+      DTS:DTSID="{8A634A9F-C423-474D-8C76-8EEB374773D8}"
+      DTS:ObjectName="PARAM_keep_staging">
+      <DTS:Property
+        DTS:DataType="11"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{DA43E229-0CBB-47D3-9ACA-A365EFD5C727}"
+      DTS:ObjectName="PARAM_ServerName">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">localhost</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Format: YYYY-MM-DD. Lämna som 0 om inget slutdatum ska finnas"
+      DTS:DTSID="{0844EC6D-018F-47D4-91C9-5F132E2B2A21}"
+      DTS:ObjectName="PARAM_Slutdatum_API">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Format: YYYY-MM-DD. Lämna som 0 om inget startdatum ska finnas"
+      DTS:DTSID="{175E23F1-9EB5-4B6E-B5D0-7A03EE6B5AB3}"
+      DTS:ObjectName="PARAM_Startdatum_API">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">2020-01-01</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{81BFF774-11BA-4115-AEE5-9ADACB7CD8E5}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;dummy&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OBJ_Activities">
+      <DTS:VariableValue
+        DTS:DataType="8">dummy</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{03D1D096-E0BC-4F74-97E8-B4E86F314A23}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::PARAM_FilePath] +   @[User::VAR_FileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VAR_Complete_FilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Testarkiv\Activities_202111010802.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4F1B483A-A5F2-4CD0-9474-1ED5C94A0A87}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::PARAM_Slutdatum_API]==&quot;0&quot;?&#xA;&quot;2200-01-01&quot;:&#xA;@[$Package::PARAM_Slutdatum_API]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VAR_EndDate">
+      <DTS:VariableValue
+        DTS:DataType="8">2200-01-01</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DA9824E5-DB56-4388-A690-12BFB2B04EB2}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;Activities_&quot; + REPLACE(REPLACE(REPLACE(SUBSTRING((DT_WSTR,29)GETDATE(), 1, 16), &quot;-&quot;, &quot;&quot;), &quot; &quot;, &quot;&quot;), &quot;:&quot;, &quot;&quot;) + &quot;.csv&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VAR_FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">Activities_202111010802.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C15547A3-6033-468D-89C7-44D55E57FA7C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::PARAM_Startdatum_API]==&quot;0&quot;?&#xA;&quot;1971-01-01&quot;:&#xA;@[$Package::PARAM_Startdatum_API]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VAR_StartDate">
+      <DTS:VariableValue
+        DTS:DataType="8">2020-01-01</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Load activities to staging"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{EAD30A24-C87A-47A5-89E9-743A4C0D24F2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Load activities to staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Load activities to staging\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Load activities to staging\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load activities to staging\Derived Column.Inputs[Derived Column Input].Columns[distance]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="distance"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[distance]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE]([REPLACE](#{Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[distance]},"\"",""),",",".")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(REPLACE(distance,"\"",""),",",".")</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load activities to staging\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT - Load activities to staging\Derived Column.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load activities to staging\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT - Load activities to staging\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load activities to staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load activities to staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load activities to staging\FLS - Get data from csv file"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1053"
+              name="FLS - Get data from csv file"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Activities CSV file connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[Activities CSV file connection]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].ExternalColumns[name]"
+                      length="50"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[distance]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].ExternalColumns[distance]"
+                      length="50"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[distance]"
+                      name="distance"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[start_date_local]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].ExternalColumns[start_date_local]"
+                      length="50"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[start_date_local]"
+                      name="start_date_local"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[moving_time]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].ExternalColumns[moving_time]"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[moving_time]"
+                      name="moving_time"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].ExternalColumns[type]"
+                      length="50"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[type]"
+                      name="type"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].ExternalColumns[id]"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].ExternalColumns[name]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].ExternalColumns[distance]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="distance" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].ExternalColumns[start_date_local]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="start_date_local" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].ExternalColumns[moving_time]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="moving_time" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].ExternalColumns[type]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="type" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].ExternalColumns[id]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="id" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load activities to staging\Load to staging table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Load to staging table"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[sa].[Activities]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load activities to staging\Load to staging table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DB connection]"
+                  connectionManagerRefId="Package.ConnectionManagers[DB connection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[name]" />
+                    <inputColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].Columns[distance]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="distance"
+                      externalMetadataColumnId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].ExternalColumns[distance]"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[distance]" />
+                    <inputColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].Columns[start_date_local]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="start_date_local"
+                      externalMetadataColumnId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].ExternalColumns[start_date_local]"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[start_date_local]" />
+                    <inputColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].Columns[moving_time]"
+                      cachedDataType="i4"
+                      cachedName="moving_time"
+                      externalMetadataColumnId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].ExternalColumns[moving_time]"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[moving_time]" />
+                    <inputColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].Columns[type]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="type"
+                      externalMetadataColumnId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].ExternalColumns[type]"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[type]" />
+                    <inputColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].Columns[id]"
+                      cachedDataType="i8"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      lineageId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output].Columns[id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i8"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="50"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].ExternalColumns[distance]"
+                      dataType="wstr"
+                      length="50"
+                      name="distance" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].ExternalColumns[start_date_local]"
+                      dataType="wstr"
+                      length="50"
+                      name="start_date_local" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].ExternalColumns[moving_time]"
+                      dataType="i4"
+                      name="moving_time" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input].ExternalColumns[type]"
+                      dataType="wstr"
+                      length="50"
+                      name="type" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load activities to staging\Load to staging table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load activities to staging\Load to staging table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load activities to staging\Load to staging table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load activities to staging\Load to staging table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Load activities to staging.Paths[Derived Column Output]"
+              endId="Package\DFT - Load activities to staging\Load to staging table.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DFT - Load activities to staging\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT - Load activities to staging.Paths[Flat File Source Output]"
+              endId="Package\DFT - Load activities to staging\Derived Column.Inputs[Derived Column Input]"
+              name="Flat File Source Output"
+              startId="Package\DFT - Load activities to staging\FLS - Get data from csv file.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST - Create staging table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{26DB534F-6802-41B7-B089-256CAC3D5BF0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST - Create staging table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9859E8A1-FCB7-497D-879C-F4D9D368DB97}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID (N'sa.activities', N'U') IS NULL &#xA;BEGIN&#xA; CREATE TABLE [sa].[activities](&#xA;&#x9;[id] [bigint] NOT NULL,&#xA;&#x9;[name] [nvarchar](50) NULL,&#xA;&#x9;[distance] [nvarchar](50) NULL,&#xA;&#x9;[start_date_local] [nvarchar](50) NULL,&#xA;&#x9;[moving_time] [int] NULL,&#xA;&#x9;[type] [nvarchar](50) NULL,&#xA; CONSTRAINT [PK_id] PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[id] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;&#xA;END&#xA;TRUNCATE TABLE Strava.sa.activities" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST - Drop staging table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{620FAFD9-E47F-4D59-9D09-2D5CDF9EFAC6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST - Drop staging table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9859E8A1-FCB7-497D-879C-F4D9D368DB97}"
+          SQLTask:SqlStatementSource="DROP TABLE Strava.sa.activities" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST - Merge staging with dbo"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4A6811BA-0806-45CC-B0F0-8E8486C51AE9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST - Merge staging with dbo"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9859E8A1-FCB7-497D-879C-F4D9D368DB97}"
+          SQLTask:SqlStatementSource="&#xA;MERGE [Strava].[dbo].[activities] AS TARGET&#xA;USING [Strava].[sa].[activities] AS SOURCE&#xA;ON (TARGET.id = SOURCE.ID)&#xA;WHEN MATCHED AND &#xA;(&#xA;&#x9;TARGET.[name] &lt;&gt; SOURCE.[name] OR&#xA;&#x9;TARGET.[distance] &lt;&gt; SOURCE.[distance] OR&#xA;&#x9;TARGET.[start_date_local] &lt;&gt; SOURCE.[start_date_local] OR&#xA;&#x9;TARGET.[moving_time] &lt;&gt; SOURCE.[moving_time] OR&#xA;&#x9;TARGET.[type] &lt;&gt; SOURCE.[type]&#xA;)&#xA;THEN UPDATE SET &#xA; &#x9;TARGET.[name] = SOURCE.[name],&#xA;&#x9;TARGET.[distance] = SOURCE.[distance],&#xA;&#x9;TARGET.[start_date_local] = SOURCE.[start_date_local],&#xA;&#x9;TARGET.[moving_time] = SOURCE.[moving_time],&#xA;&#x9;TARGET.[type] = SOURCE.[type],&#xA;&#x9;TARGET.[UpdateDateTime] = CAST(GETDATE() AS smalldatetime)&#xA;WHEN NOT MATCHED BY TARGET&#xA;THEN INSERT&#xA;(&#xA;&#x9;id,&#xA;&#x9;[name],&#xA;&#x9;[distance],&#xA;&#x9;[start_date_local],&#xA;&#x9;[moving_time],&#xA;&#x9;[type],&#xA;&#x9;InsertDateTime&#xA;)&#xA;VALUES&#xA;(&#xA;&#x9;SOURCE.id,&#xA;&#x9;SOURCE.[name],&#xA;&#x9;SOURCE.[distance],&#xA;&#x9;SOURCE.[start_date_local],&#xA;&#x9;SOURCE.[moving_time],&#xA;&#x9;SOURCE.[type],&#xA;&#x9;CAST(GETDATE() AS smalldatetime)&#xA;)&#xA; WHEN NOT MATCHED BY SOURCE &#xA; THEN DELETE;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SFT - Delete CSV file"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{24401DF5-4312-4BB7-B4BC-F9E1DB906857}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SFT - Delete CSV file"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="DeleteFile"
+          TaskSourcePath="User::VAR_Complete_FilePath"
+          TaskIsSourceVariable="True"
+          TaskDestinationPath="User::VAR_Complete_FilePath"
+          TaskIsDestinationVariable="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ST - Get data from Strava API to CSV file"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Script Task"
+      DTS:DTSID="{A35A9991-DA8F-4344-AB6A-25C517FB5AFF}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ST - Get data from Strava API to CSV file"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_13b39f12dc364ee2bd76d06d3c306156"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="CSharp"
+          ReadOnlyVariables="User::VAR_Complete_FilePath,User::VAR_EndDate,User::VAR_StartDate"
+          ReadWriteVariables="User::OBJ_Activities">
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+          <ProjectItem
+            Name="packages.config"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<packages>
+  <package id="Newtonsoft.Json" version="13.0.1" targetFramework="net47" />
+</packages>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_13b39f12dc364ee2bd76d06d3c306156.Properties.Settings.get_Default():ST_13b39f12dc364ee2bd76d06d3c306156.Properties.Sett" +
+    "ings")]
+
+namespace ST_13b39f12dc364ee2bd76d06d3c306156.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using System.IO;
+using System.Net;
+using System.Text;
+
+#endregion
+
+namespace ST_13b39f12dc364ee2bd76d06d3c306156
+{
+    /// <summary>
+    /// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+    /// or parent of this class.
+    /// </summary>
+	[Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+	public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+	{
+        #region Help:  Using Integration Services variables and parameters in a script
+        /* To use a variable in this script, first ensure that the variable has been added to 
+         * either the list contained in the ReadOnlyVariables property or the list contained in 
+         * the ReadWriteVariables property of this script task, according to whether or not your
+         * code needs to write to the variable.  To add the variable, save this script, close this instance of
+         * Visual Studio, and update the ReadOnlyVariables and 
+         * ReadWriteVariables properties in the Script Transformation Editor window.
+         * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+         * 
+         * Example of reading from a variable:
+         *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+         * 
+         * Example of writing to a variable:
+         *  Dts.Variables["User::myStringVariable"].Value = "new value";
+         * 
+         * Example of reading from a package parameter:
+         *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+         *  
+         * Example of reading from a project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+         * 
+         * Example of reading from a sensitive project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+         * */
+
+        #endregion
+
+        #region Help:  Firing Integration Services events from a script
+        /* This script task can fire events for logging purposes.
+         * 
+         * Example of firing an error event:
+         *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+         * 
+         * Example of firing an information event:
+         *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+         * 
+         * Example of firing a warning event:
+         *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+         * */
+        #endregion
+
+        #region Help:  Using Integration Services connection managers in a script
+        /* Some types of connection managers can be used in this script task.  See the topic 
+         * "Working with Connection Managers Programatically" for details.
+         * 
+         * Example of using an ADO.Net connection manager:
+         *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+         *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+         *
+         * Example of using a File connection manager
+         *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+         *  string filePath = (string)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+         * */
+        #endregion
+
+
+        static ScriptMain()
+        {
+            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
+        }
+        static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            if (args.Name.ToUpper().Contains("NEWTONSOFT"))
+            {
+                string path = @"C:\Users\daniel.markgren\.nuget\packages\newtonsoft.json\13.0.1\lib\netstandard2.0\";
+                return System.Reflection.Assembly.LoadFile(System.IO.Path.Combine(path, "Newtonsoft.Json.dll"));
+            }
+            return null;
+        }
+        public void Main()
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            string refreshToken = "3b681417fbf152d8e0f56b014060cb2d0b8140ed";
+            string getAccesstoken = @"https://www.strava.com/oauth/token?client_id=66746&client_secret=151d29770c52474ba644493da54ae6842b9a1960&refresh_token=" + refreshToken + @"&grant_type=refresh_token";
+            string filePath = Dts.Variables["User::VAR_Complete_FilePath"].Value.ToString();
+            string startDate = Dts.Variables["User::VAR_StartDate"].Value.ToString();
+            string endDate = Dts.Variables["User::VAR_EndDate"].Value.ToString();
+
+            byte[] bytes = Encoding.Default.GetBytes(startDate);
+            startDate = Encoding.UTF8.GetString(bytes);
+
+            List<string> startDateList = new List<string>(
+            startDate.Split(new string[] { "-" }, StringSplitOptions.None));
+
+            DateTime startDateTime = new DateTime(Int32.Parse(startDateList[0]), Int32.Parse(startDateList[1]), Int32.Parse(startDateList[2]));
+            double epochStartDate = ConvertToUnixTimestamp(startDateTime);
+
+            List<string> endDateList = new List<string>(
+            endDate.Split(new string[] { "-" }, StringSplitOptions.None));
+
+            DateTime endDateTime = new DateTime(Int32.Parse(endDateList[0]), Int32.Parse(endDateList[1]), Int32.Parse(endDateList[2]));
+            double epochEndDate = ConvertToUnixTimestamp(endDateTime);
+
+
+
+
+            try
+            {
+
+                string accessToken = GetAccessToken(getAccesstoken);
+
+                string activities = @"https://www.strava.com/api/v3/athlete/activities?access_token=" + accessToken + @"&per_page=200&after=" + epochStartDate.ToString() + @"&before=" + epochEndDate.ToString();
+                
+                
+                DataTable table = GetRequest(activities);
+
+
+
+                ToCSV(table, filePath);
+
+                //Dts.Variables["User::OBJ_Activities"].Value = table;
+            }
+            catch (Exception ex)
+            {
+                Dts.Events.FireError(0, String.Empty, ex.Message, String.Empty, 0);
+                Dts.TaskResult = (int)ScriptResults.Failure;
+            }
+
+
+
+            Dts.TaskResult = (int)ScriptResults.Success;
+
+        }
+
+        public static string GetAccessToken(string url)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                IEnumerable<KeyValuePair<string, string>> queries = new List<KeyValuePair<string, string>>()
+               {
+                   new KeyValuePair<string, string>("client_id", "66746"),
+                   new KeyValuePair<string, string>("client_secret", "151d29770c52474ba644493da54ae6842b9a1960")
+               };
+                HttpContent q = new FormUrlEncodedContent(queries);
+
+
+
+                    var respond = client.PostAsync(url, q).Result;
+                    var c = respond.Content;
+
+
+
+
+                    string unsubstringed = c.ReadAsStringAsync().Result;
+                    var accesstoken = JObject.Parse(unsubstringed)["access_token"].ToString();
+
+
+
+
+                    //int pFrom = unsubstringed.IndexOf("access_token") + "access_token".Length + 3;
+                    //int pTo = unsubstringed.LastIndexOf("expires_at") - 3;
+                    //string accesstoken = unsubstringed.Substring(pFrom, pTo - pFrom);
+
+
+                    return accesstoken;
+                
+
+            }
+
+        }
+
+        public static DataTable GetRequest(string url)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                using (HttpResponseMessage response = client.GetAsync(url).Result)
+                {
+                    using (HttpContent content = response.Content)
+                    {
+                        string myActivities = content.ReadAsStringAsync().Result;
+
+                        DataTable dt = new DataTable();
+
+                        dt.Columns.Add("id");
+                        dt.Columns.Add("name");
+                        dt.Columns.Add("distance");
+                        dt.Columns.Add("start_date_local");
+                        dt.Columns.Add("moving_time");
+                        dt.Columns.Add("type");
+
+
+
+                        List<Activity> activity = JsonConvert.DeserializeObject<List<Activity>>(myActivities);
+
+
+                        DataSet dataset = new DataSet();
+
+                        dataset.Tables.Add(dt);
+
+
+                        foreach (var item in activity)
+                        {
+                            DataRow row = dt.NewRow();
+                            row["id"] = item.id;
+                            row["name"] = item.name;
+                            row["distance"] = item.distance;
+                            row["start_date_local"] = item.start_date_local;
+                            row["moving_time"] = item.moving_time;
+                            row["type"] = item.type;
+
+                            dt.Rows.Add(row);
+                        }
+                        return dt;
+                        //Dts.Variables["User::OBJ_Activities"].Value = dt;
+                    }
+                }
+            }
+        }
+        public static double ConvertToUnixTimestamp(DateTime date)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            TimeSpan diff = date.ToUniversalTime() - origin;
+            return Math.Floor(diff.TotalSeconds);
+        }
+        public static void ToCSV(DataTable dtDataTable, string strFilePath)
+        {
+            StreamWriter sw = new StreamWriter(strFilePath, false);
+            //headers    
+            for (int i = 0; i < dtDataTable.Columns.Count; i++)
+            {
+                sw.Write(dtDataTable.Columns[i]);
+                if (i < dtDataTable.Columns.Count - 1)
+                {
+                    sw.Write("|");
+                }
+            }
+            sw.Write(sw.NewLine);
+            foreach (DataRow dr in dtDataTable.Rows)
+            {
+                for (int i = 0; i < dtDataTable.Columns.Count; i++)
+                {
+                    if (!Convert.IsDBNull(dr[i]))
+                    {
+                        string value = dr[i].ToString();
+                        if (value.Contains(","))
+                        {
+                            value = String.Format("\"{0}\"", value);
+                            sw.Write(value);
+                        }
+                        else
+                        {
+                            sw.Write(dr[i].ToString());
+                        }
+                    }
+                    if (i < dtDataTable.Columns.Count - 1)
+                    {
+                        sw.Write("|");
+                    }
+                }
+                sw.Write(sw.NewLine);
+            }
+            sw.Close();
+        }
+
+
+
+
+
+
+
+
+
+
+
+        #region ScriptResults declaration
+        /// <summary>
+        /// This enum provides a convenient shorthand within the scope of this class for setting the
+        /// result of the script.
+        /// 
+        /// This code was generated automatically.
+        /// </summary>
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+	}
+
+}]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_13b39f12dc364ee2bd76d06d3c306156.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_13b39f12dc364ee2bd76d06d3c306156.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_13b39f12dc364ee2bd76d06d3c306156.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_13b39f12dc364ee2bd76d06d3c306156.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_13b39f12dc364ee2bd76d06d3c306156.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>ST_13b39f12dc364ee2bd76d06d3c306156</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>ST_13b39f12dc364ee2bd76d06d3c306156</msb:DisplayName>
+    <msb:ProjectId>{0E0C8583-10DA-4B6E-A3F9-195D95B6F277}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_13b39f12dc364ee2bd76d06d3c306156.csproj" />
+    <msb:File Include="Activity.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="packages.config" />
+    <msb:File Include="ScriptMain.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_13b39f12dc364ee2bd76d06d3c306156")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_13b39f12dc364ee2bd76d06d3c306156")]
+[assembly: AssemblyCopyright("Copyright @  2021")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Activity.cs"
+            Encoding="UTF8"><![CDATA[namespace ST_13b39f12dc364ee2bd76d06d3c306156
+{
+    
+    
+        class Activity
+        {
+
+
+
+            /*
+     "resource_state": 2,
+    "athlete": {
+        "id": 45400778,
+        "resource_state": 1
+    },
+    "start_latlng": [
+        63.82,
+        20.32
+    ],
+    "end_latlng": [
+        63.82,
+        20.31
+    ],
+    "map": {
+        "id": "a5435962599",
+        "summary_polyline": "e~ndKyp_{B?GDRAp@MbBLlIBbFGrGWdFChBBb@RVLGCC@?\\?`Ab@PBj@_@b@EJK|@t@jAhDNx@?xBPfEDrBJzACvBD`AJdATfAVTbAPZAd@SNP\\IdA?TS|AKbDkAvBm@d@]vAi@lA_A^Bl@^ZEb@_@~@WdAg@lAgA\\s@Z]p@g@v@[jA_AnAo@f@_@hAa@Pj@Hp@FbBPnAzDEz@bAZj@Ph@f@pCh@`CVrC`@dCVlEl@h@l@NZRf@|@^XJ@PMTPFp@Nx@R`@NKXk@f@wAF_@P_@HEb@HRn@B^A^Oz@_AlAYh@_@fAK|@BhDEh@Qd@E~BW^]NANQPwCdAoAl@]n@c@Hy@\\uAX_F`@wErAsEvBaCx@oAl@aAVsAn@sB`@c@X_Bb@yGlCcCf@qBj@_@f@[v@Yj@iC`CeBfC_@p@iAr@y@Je@Xk@l@_@~@c@v@uBvAe@f@Y~@iBtIW~@[xBgB|I[pBSp@y@jAO~@QrBaBrGUjAm@bFw@dDOtA]`GDfAAdAQfAg@`CYzBUl@UfAc@bEExAa@rA}@lDeAlI_A|Ea@`A_@fBOdAUhCNLnAVnAr@xAd@tAx@nAdA`@b@f@r@lBdDLx@A`BJ@VXh@A|@c@`ADtBRf@KjHN\\Sn@w@b@[b@yBZ_AnA}BzAmDXc@lA{@nAqB~@}AtAqCdAcBv@cBbC}DTw@AKg@}B_ByJk@oCk@mFO_FBgDJcEHgBNw@d@eAZSn@HbAExARZGl@e@z@eA^m@Jg@vCqJDe@\\aBPg@j@w@f@c@RCb@[fAc@`AQx@Dn@Gz@RpAH`B@bAI^JxAF\\GlAi@nAqAf@[dAcAtA{AfCoDXWp@wA\\e@~BcFTm@XoAg@yK@s@CyCKwEAaCMeFE_Ha@{XAuIIuHM}CMaAYs@]o@SO_@IkA@WG]i@Sa@U}@i@eEMa@y@oAuA_AcAIk@PQRCCMu@Gy@KkAEqAAKECqDxBi@RwBlBgAb@]XCHc@d@g@`@e@L_@I]FiAt@AR}A`@GTSJcDl@_Cr@s@JeBt@}@r@{AGkALo@^]@YMe@Ge@Oa@g@OgAKkAGqACiBBeNEqAIs@Qo@_@aDOYo@A{@l@IZOLqAy@YTw@hA",
+        "resource_state": 2
+    },
+            */
+
+
+            public string name { get; set; }
+            public float distance { get; set; }
+            public int moving_time { get; set; }
+            //public int elapsed_time { get; set; }
+            //public float total_elevation_gain { get; set; }
+            public string type { get; set; }
+            //public string workout_type { get; set; }
+            public long id { get; set; }
+            //public string external_id { get; set; }
+            //public string upload_id { get; set; }
+            public string start_date { get; set; }
+            public string start_date_local { get; set; }
+            //public string timezone { get; set; }
+            //public float utc_offset { get; set; }
+            //public string location_city {get; set;}
+            //public string location_state { get; set; }
+            //public string location_country { get; set; }
+            //public float start_latitude { get; set; }
+            //public float start_longitude { get; set; }
+            //public int achievement_count { get; set; }
+            //public int kudos_count { get; set; }
+            //public int comment_count { get; set; }
+            //public int athlete_count { get; set; }
+            //public int photo_count { get; set; }
+            //public Boolean trainer { get; set; }
+            //public Boolean commute { get; set; }
+            //public Boolean manual { get; set; }
+            //public Boolean isprivate { get; set; }
+            //public string visibility { get; set; }
+            //public Boolean flagged { get; set; }
+            //public string gear_id { get; set; }
+            //public Boolean from_accepted_tag { get; set; }
+            //public string upload_id_str { get; set; }
+            //public float average_speed { get; set; }
+            //public float max_speed { get; set; }
+            //public float average_cadence { get; set; }
+            //public float average_temp { get; set; }
+            //public Boolean has_heartrate { get; set; }
+            //public float average_heartrate { get; set; }
+            //public float max_heartrate { get; set; }
+            //public Boolean heartrate_opt_out { get; set; }
+            //public Boolean display_hide_heartrate_option { get; set; }
+            //public float elev_high { get; set; }
+            //public float elev_low { get; set; }
+            //public int pr_count { get; set; }
+            //public int total_photo_count { get; set; }
+            //public Boolean has_kudoed { get; set; }
+        }
+    }]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="ST_13b39f12dc364ee2bd76d06d3c306156.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3B311E40-C607-4582-9D41-37F0FD55CF9D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_13b39f12dc364ee2bd76d06d3c306156</RootNamespace>
+    <AssemblyName>ST_13b39f12dc364ee2bd76d06d3c306156</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>C:\Users\daniel.markgren\.nuget\packages\newtonsoft.json\13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Activity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST150</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+          <BinaryItem
+            Name="ST_13b39f12dc364ee2bd76d06d3c306156.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAPuQf2EAAAAAAAAAAOAAIiALATAAACoAAAAIAAAAAAAAakgA
+AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACgAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAABhIAABPAAAAAGAAAHgEAAAAAAAAAAAAAAAAAAAA
+AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAcCgAAAAgAAAAKgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAHgEAAAAYAAAAAYAAAAsAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAIAAAAACAAAAMgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABM
+SAAAAAAAAEgAAAACAAUAvCcAAKQfAAABAAAAAAAAAGBHAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CewEAAAQqIgIDfQEAAAQqHgJ7AgAABCoiAgN9AgAABCoe
+AnsDAAAEKiICA30DAAAEKh4CewQAAAQqIgIDfQQAAAQqHgJ7BQAABCoiAgN9BQAABCoeAnsGAAAE
+KiICA30GAAAEKh4CewcAAAQqIgIDfQcAAAQqHgIoEAAACipeKBEAAAoU/gYRAAAGcxIAAApvEwAA
+Ciq6A28UAAAKbxUAAApyAQAAcG8WAAAKLBVyFwAAcHLAAABwKBcAAAooGAAACioUKgAAGzAGAM0B
+AAABAAARIAAMAAAoGQAACnLoAABwCnI6AQBwBnItAgBwKBoAAAoLAigbAAAKbxwAAApyYQIAcG8d
+AAAKbx4AAApvHwAACgwCKBsAAApvHAAACnKZAgBwbx0AAApvHgAACm8fAAAKDQIoGwAACm8cAAAK
+csECAHBvHQAACm8eAAAKbx8AAAoTBCggAAAKCW8hAAAKEwUoIgAAChEFbyMAAAoNCReNKQAAASUW
+cuUCAHCiFm8kAAAKcyUAAAoTBhEGFm8mAAAKKCcAAAoRBhdvJgAACignAAAKEQYYbyYAAAooJwAA
+CnMoAAAKKBUAAAYTBxEEF40pAAABJRZy5QIAcKIWbyQAAApzJQAAChMIEQgWbyYAAAooJwAAChEI
+F28mAAAKKCcAAAoRCBhvJgAACignAAAKcygAAAooFQAABhMJBygTAAAGEwocjSkAAAElFnLpAgBw
+oiUXEQqiJRhyZwMAcKIlGRIHKCkAAAqiJRpykQMAcKIlGxIJKCkAAAqiKCoAAAooFAAABggoFgAA
+Bt40EwsCKBsAAApvKwAAChZ+LAAAChELby0AAAp+LAAAChZvLgAACiYCKBsAAAoXby8AAAreAAIo
+GwAAChZvLwAACioAAAABEAAAAAA7AVGMATQUAAABGzAEAHoAAAACAAARczAAAAoKczEAAAolcqMD
+AHBytwMAcHMyAAAKbzMAAAolcsMDAHBy3wMAcHMyAAAKbzMAAApzNAAACgsGAgdvNQAACm82AAAK
+bzcAAApvOAAACm85AAAKKDoAAApyMQQAcG87AAAKbx8AAAoM3goGLAYGbzwAAArcCCoAAAEQAAAC
+AAYAaG4ACgAAAAAbMAMAvQEAAAMAABFzMAAACgoGbz0AAApvPgAACm8/AAAKBm89AAAKbz4AAApy
+SwQAcHNAAAAKb0EAAAoGAm9CAAAKbzYAAAoLB283AAAKDAhvOAAACm85AAAKc0MAAAoNCW9EAAAK
+cm0EAHBvRQAACiYJb0QAAApycwQAcG9FAAAKJglvRAAACnJ9BABwb0UAAAomCW9EAAAKco8EAHBv
+RQAACiYJb0QAAApysQQAcG9FAAAKJglvRAAACnLJBABwb0UAAAomKAEAACtzRwAACm9IAAAKCW9J
+AAAKb0oAAAoTBDifAAAAEgQoSwAAChMFCW9MAAAKEwYRBnJtBABwEQVvCQAABoxDAAABb00AAAoR
+BnJzBABwEQVvAQAABm9NAAAKEQZyfQQAcBEFbwMAAAaMRAAAAW9NAAAKEQZyjwQAcBEFbw0AAAZv
+TQAAChEGcrEEAHARBW8FAAAGjDMAAAFvTQAAChEGcskEAHARBW8HAAAGb00AAAoJb04AAAoRBm9P
+AAAKEgQoUAAACjpV////3g4SBP4WCAAAG288AAAK3AkTB94eCCwGCG88AAAK3AcsBgdvPAAACtwG
+LAYGbzwAAArcEQcqAAAAQWQAAAIAAADXAAAAsgAAAIkBAAAOAAAAAAAAAAIAAABEAAAAWAEAAJwB
+AAAKAAAAAAAAAAIAAAA9AAAAaQEAAKYBAAAKAAAAAAAAAAIAAAAGAAAAqgEAALABAAAKAAAAAAAA
+ABMwCQAuAAAABAAAERIAILIHAAAXFxYWFhYXKFEAAAoPAChSAAAKBihTAAAKCxIBKFQAAAooVQAA
+CioAABswAwA4AQAABQAAEQMWc1YAAAoKFgsrMQYCb0QAAAoHb1cAAApvWAAACgcCb0QAAApvWQAA
+ChdZLwsGctMEAHBvWgAACgcXWAsHAm9EAAAKb1kAAAoywQYGb1sAAApvWgAACgJvTgAACm9cAAAK
+DDioAAAACG9dAAAKdBoAAAENFhMEK3kJEQRvXgAACihfAAAKLUgJEQRvXgAACm8fAAAKEwURBXLX
+BABwbxYAAAosGHLbBABwEQUoYAAAChMFBhEFb1oAAAorEwYJEQRvXgAACm8fAAAKb1oAAAoRBAJv
+RAAACm9ZAAAKF1kvCwZy0wQAcG9aAAAKEQQXWBMEEQQCb0QAAApvWQAACj91////BgZvWwAACm9a
+AAAKCG9hAAAKOk3////eFAh1HwAAARMGEQYsBxEGbzwAAArcBm9iAAAKKgEQAAACAGMAuh0BFAAA
+AAAeAihjAAAKKq5+CAAABC0ecucEAHDQBAAAAihkAAAKb2UAAApzZgAACoAIAAAEfggAAAQqGn4J
+AAAEKh4CgAkAAAQqGn4KAAAEKh4CKGcAAAoqLnMdAAAGgAoAAAQqAABCU0pCAQABAAAAAAAMAAAA
+djQuMC4zMDMxOQAAAAAFAGwAAACwCQAAI34AABwKAABADAAAI1N0cmluZ3MAAAAAXBYAAFwFAAAj
+VVMAuBsAABAAAAAjR1VJRAAAAMgbAADcAwAAI0Jsb2IAAAAAAAAAAgAAAVcdogkJCwAAAPoBMwAW
+AAABAAAATAAAAAYAAAANAAAAHgAAAA8AAABnAAAAAgAAACUAAAAFAAAAAwAAAAoAAAASAAAACAAA
+AAEAAAAHAAAAAQAAAAEAAAABAAAAAADnBgEAAAAAAAYA9wRsCQYAhgVsCQYAQwRICQ8A4AkAAAYA
+cATlBwYA2gTlBwYAuwTlBwYAbQXlBwYAFwXlBwYAMAXlBwYAhwTlBwYAogQPBgYASQtDBwYACwRs
+CQoASwVsBgoAbwNsBgYAKAzlBwYASQpDBwYAMgDWAAYAMghDBw4AjwtvCA4AyAtvCBIANgLBAA4A
+IAJvCE8AMAkAABIAFQzBAAYAqwJDBwYAWwdDBwYA+QiKAAYAIQmLCgYASQJDBwYASgdDBwYAJgRI
+CQYApQiMCQYATAjBBxYA8APRBhYAVwTRBhYApgOsBwYAhQdDBwYAyQhDBwYANQZDBwYASAaKABYA
+tQhQCxYAGANQCwoAvwZsBhoALQrkAhoAQALkAgYABgYJDAYAngpDBwYAAQDWAAYAOQBDBwYAVQJD
+BwoA5QhsBgYAPwDWAA4AsgtvCAYADwBfCh4ANgt/CB4AZAd/CA4AyQqxCg4AFgCxCg4ArgWxChIA
+CwjBABIAoQfBAB4A6Qs8CBIAWwvBABIA9wfBAAYATgBDBwYAgAJDBxIAIAjBAAYA3QFDBwYAPAZD
+BwYABgmKABIAiwPBAAYA7QtDBwYAKANDBwYAXAJDBwAAAACBAAAAAAABAAEAAAAQADEMVAA1AAEA
+AQABAAAAegdUAEEACAAQAAAAEACTCe8JNQAIABgAAAEQAEAK7wmZAAoAHAADAQAABgsAAIEACwAf
+AAEAVgHNAAEAPAGPAgEAbAGSAgEAiQHNAAEAKAGVAgEAnwHNAAEAuwHNABEATweYAhEAXwOdAhEA
+BAKiAgYGuQCSAlaA9gqmAlaAPwOmAlAgAAAAAIYImQIvAAEAWCAAAAAAhgiiAhAAAQBhIAAAAACG
+COoBqgICAGkgAAAAAIYI9wGuAgIAciAAAAAAhgjEAjMCAwB6IAAAAACGCNQCAQADAIMgAAAAAIYI
+LQMvAAQAiyAAAAAAhgg2AxAABACUIAAAAACGCBoBswIFAJwgAAAAAIYIIQG3AgUApSAAAAAAhgjS
+Ay8ABgCtIAAAAACGCOEDEAAGALYgAAAAAIYIlQYvAAcAviAAAAAAhgiqBhAABwDHIAAAAACGGDsJ
+BgAIAM8gAAAAAJEYQQm8AggA5yAAAAAAkQDoBcACCAAYIQAAAACGAIAHBgAKAAQjAAAAAJYAawfI
+AgoAnCMAAAAAlgD1C80CCwDMJQAAAACWAFgI0wIMAAgmAAAAAJYAswDZAg0AXCcAAAAAhhg7CQYA
+DwDHIAAAAACDGDsJBgAPAGQnAAAAAJMIoQjgAg8AkCcAAAAAkwhHA+YCDwCXJwAAAACTCFMD7AIP
+AJ8nAAAAAJYIaQvzAhAApicAAAAAhhg7CQYAEACuJwAAAACRGEEJvAIQAAAAAQDOBQAAAQDOBQAA
+AQDOBQAAAQDOBQAAAQDOBQAAAQDOBQAAAQDOBQAAAQCaCAAAAgBaCgAAAQAtBwAAAQAtBwAAAQDr
+AwAAAQA0AgAAAgBBBgAAAQDOBQkAOwkBABEAOwkGABkAOwkKACkAOwkQADEAOwkQADkAOwkQAEEA
+OwkQAEkAOwkQAFEAOwkQAFkAOwkQAGEAOwkQAHEAOwkGAHkAOwkGAAkBOwkGACkBOwkVAGkAOwkG
+ADkBjwccAEEBOwkiADkB1AUoAJEAkAIvAEkB3QgvAEkBdgozAFEBEAM4AIkAhwI+AFkBGAddAEkB
+KAtkAIEA/gprAGkBKQpxAHEBMQd3AHkBpAV+AGkAKQYvAIEBaQuCAIEBNwqIAIEBeACCAIEBMgaO
+AEkBYwuUAAwAOwmkAAwAMQevAJkBzAO1ANkAOwm6AKEBKQYvAEkBKAvBAGkBFAvHAEkBOgzNAKEA
+FAIvAKkBFwnQAGkBgAsBAKkAOwkGABQAOwkGABwAOwn1ABQAFgH9ALkBOwkDAakADAETASQAdQso
+AcEApgstAbEA8QAyASwAdQsoAckBzANCAckBMQdJAfkAxAMGAKkA3ApnAdkB3gttATQAlAgGAOkB
+OwkQADQAFgH9AKkAAwGBAbkAOwkGALkAfwqMAfEBFgGSAQECPguZAQkCOwkGAAkCHgqpARECFgGv
+ATwALQm8AUQAmgsoAbkAHQzMAdEAOgfRAbkAHwvXASkCFgHdAUQAAAzjAdkAOwnuAdkAtAL8AdkA
+1gcBAuEAWwkKAjkCEQkOAukAOwkhAvEBMQcnAkECBQQuAkkC1AszAkECBQQQAEECBAMvAEkCLQk3
+AvEAmgt+ANEAMQc8AlECDwdBAkkBLwtGAvEAAAzjAUECvgMGAIEAOwkGAFkCbgJMAlkCJAxVAhEB
+OwlaAjEBOwkGAAgAMACFAggANACKAiAAYwCKAiEAYwCKAi4ACwAZAy4AEwAiAy4AGwBBAy4AIwBK
+Ay4AKwBzAy4AMwBzAy4AOwBzAy4AQwBKAy4ASwB5Ay4AUwBzAy4AWwCQA0AAYwCKAkEAYwCKAmAA
+YwCKAmEAYwCKAmMAawCKAoAAYwCKAoEAYwCKAoMAcwCKAqAAYwCKAqEAYwCKAsAAYwCKAsEAYwCK
+AuAAYwCKAuEAYwCKAgABYwCKAgkBewBBAyABYwCKAikBewBBA0ABYwCKAkEBYwCKAmABYwCKAoAB
+YwCKAqABYwCKAsABYwCKAkQA2QBQAecBEwICAAEABAAIAAUACgAAAKYC+AIAAPsB/AIAANgCAAMA
+ADoD+AIAACUBBAMAAOUD+AIAAK4G+AIAAKUICAMAAGcDDgMAAG0LFAMCAAEAAwABAAIAAwACAAMA
+BQABAAQABQACAAUABwABAAYABwACAAcACQABAAgACQACAAkACwABAAoACwACAAsADQABAAwADQAC
+AA0ADwABAA4ADwACABkAEQACABoAEwABABsAEwACABwAFQCeAOEA7QAgATsBeAG1AcUBBIAAAAEA
+AAAnH4U4AAAAAAAAVAAAAAQAAAAAAAAAAAAAAGECzQAAAAAADwAAAAAAAAAAAAAAagJNBgAAAAAE
+AAIAAAAAAAAAAABzAm8IAAAAAAQAAAAAAAAAAAAAAGECwQAAAAAABAAAAAAAAAAAAAAAYQJDBwAA
+AAAPAAAAAAAAAAAAAABqApQAAAAAAA0AAAAAAAAAAAAAAHwCPAgAAAAAAAAAAAEAAACdCQAABgAD
+AI0AoAEAAABJRW51bWVyYWJsZWAxAFRhc2tgMQBIdHRwSGVhZGVyVmFsdWVDb2xsZWN0aW9uYDEA
+TGlzdGAxAEludDMyAEtleVZhbHVlUGFpcmAyAEludDY0AFNUXzEzYjM5ZjEyZGMzNjRlZTJiZDc2
+ZDA2ZDNjMzA2MTU2AGdldF9VVEY4ADxNb2R1bGU+AFN5c3RlbS5JTwBNaWNyb3NvZnQuU3FsU2Vy
+dmVyLk1hbmFnZWREVFMAVG9DU1YAdmFsdWVfXwBTeXN0ZW0uRGF0YQBtc2NvcmxpYgBTeXN0ZW0u
+Q29sbGVjdGlvbnMuR2VuZXJpYwBSZWFkQXNTdHJpbmdBc3luYwBHZXRBc3luYwBQb3N0QXN5bmMA
+QWRkAGdldF9pZABzZXRfaWQAPGlkPmtfX0JhY2tpbmdGaWVsZAA8ZGlzdGFuY2U+a19fQmFja2lu
+Z0ZpZWxkADxuYW1lPmtfX0JhY2tpbmdGaWVsZAA8bW92aW5nX3RpbWU+a19fQmFja2luZ0ZpZWxk
+ADx0eXBlPmtfX0JhY2tpbmdGaWVsZAA8c3RhcnRfZGF0ZT5rX19CYWNraW5nRmllbGQAPHN0YXJ0
+X2RhdGVfbG9jYWw+a19fQmFja2luZ0ZpZWxkAERhdGVUaW1lS2luZABnZXRfZGlzdGFuY2UAc2V0
+X2Rpc3RhbmNlAGRlZmF1bHRJbnN0YW5jZQBnZXRfTWVzc2FnZQBIdHRwUmVzcG9uc2VNZXNzYWdl
+AGR0RGF0YVRhYmxlAFZhcmlhYmxlAElEaXNwb3NhYmxlAERvdWJsZQBSdW50aW1lVHlwZUhhbmRs
+ZQBHZXRUeXBlRnJvbUhhbmRsZQBTaW5nbGUATG9hZEZpbGUAZ2V0X05hbWUAZ2V0X25hbWUAc2V0
+X25hbWUARGF0ZVRpbWUAVG9Vbml2ZXJzYWxUaW1lAGdldF9tb3ZpbmdfdGltZQBzZXRfbW92aW5n
+X3RpbWUATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuUnVudGltZQBnZXRfTmV3TGluZQBDb21iaW5l
+AFNlY3VyaXR5UHJvdG9jb2xUeXBlAGdldF90eXBlAHNldF90eXBlAEZhaWx1cmUAZ2V0X0N1bHR1
+cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VDdWx0dXJlAFZTVEFSVFNjcmlwdE9iamVjdE1vZGVsQmFz
+ZQBJbnRlcm5hbERhdGFDb2xsZWN0aW9uQmFzZQBBcHBsaWNhdGlvblNldHRpbmdzQmFzZQBDbG9z
+ZQBEaXNwb3NlAFBhcnNlAGdldF9zdGFydF9kYXRlAHNldF9zdGFydF9kYXRlAEVkaXRvckJyb3dz
+YWJsZVN0YXRlAFdyaXRlAENvbXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAERlYnVnZ2VyTm9uVXNl
+ckNvZGVBdHRyaWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1
+dGUAQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJn
+ZXRGcmFtZXdvcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2Vt
+Ymx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBB
+c3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1Nj
+cmlwdFRhc2tFbnRyeVBvaW50QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBSdW50
+aW1lQ29tcGF0aWJpbGl0eUF0dHJpYnV0ZQBnZXRfVmFsdWUATWVkaWFUeXBlV2l0aFF1YWxpdHlI
+ZWFkZXJWYWx1ZQB2YWx1ZQBhZGRfQXNzZW1ibHlSZXNvbHZlAEN1cnJlbnREb21haW5fQXNzZW1i
+bHlSZXNvbHZlAEVuY29kaW5nAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAVG9TdHJpbmcAR2V0
+U3RyaW5nAE1hdGgAc3RyRmlsZVBhdGgATWljcm9zb2Z0LlNxbFNlcnZlci5TY3JpcHRUYXNrAE1p
+Y3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlRhc2tzLlNjcmlwdFRhc2sAZ2V0X3N0YXJ0X2RhdGVfbG9j
+YWwAc2V0X3N0YXJ0X2RhdGVfbG9jYWwAU2NyaXB0T2JqZWN0TW9kZWwAU3lzdGVtLkNvbXBvbmVu
+dE1vZGVsAFNUXzEzYjM5ZjEyZGMzNjRlZTJiZDc2ZDA2ZDNjMzA2MTU2LmRsbABJc0RCTnVsbABz
+ZXRfU2VjdXJpdHlQcm90b2NvbAB1cmwAZ2V0X0l0ZW0Ac2V0X0l0ZW0AU3lzdGVtAEVudW0AcmVz
+b3VyY2VNYW4AVGltZVNwYW4ASlRva2VuAEdldEFjY2Vzc1Rva2VuAFNjcmlwdE1haW4AQXBwRG9t
+YWluAGdldF9DdXJyZW50RG9tYWluAERhdGFDb2x1bW4AU3lzdGVtLkNvbmZpZ3VyYXRpb24AU3lz
+dGVtLkdsb2JhbGl6YXRpb24Ab3BfU3VidHJhY3Rpb24AU3lzdGVtLlJlZmxlY3Rpb24ARGF0YVRh
+YmxlQ29sbGVjdGlvbgBEYXRhQ29sdW1uQ29sbGVjdGlvbgBEYXRhUm93Q29sbGVjdGlvbgBFeGNl
+cHRpb24ATmV3dG9uc29mdC5Kc29uAEN1bHR1cmVJbmZvAENvbnZlcnRUb1VuaXhUaW1lc3RhbXAA
+U3lzdGVtLk5ldC5IdHRwAE5ld3RvbnNvZnQuSnNvbi5MaW5xAENsZWFyAHNlbmRlcgBnZXRfUmVz
+b3VyY2VNYW5hZ2VyAFNlcnZpY2VQb2ludE1hbmFnZXIAUmVzb2x2ZUV2ZW50SGFuZGxlcgBUb1Vw
+cGVyAEV2ZW50c09iamVjdFdyYXBwZXIAU3RyZWFtV3JpdGVyAFRleHRXcml0ZXIARmxvb3IARmly
+ZUVycm9yAElFbnVtZXJhdG9yAEdldEVudW1lcmF0b3IALmN0b3IALmNjdG9yAFN5c3RlbS5EaWFn
+bm9zdGljcwBnZXRfVG90YWxTZWNvbmRzAFN5c3RlbS5SdW50aW1lLkNvbXBpbGVyU2VydmljZXMA
+U3lzdGVtLlJlc291cmNlcwBTVF8xM2IzOWYxMmRjMzY0ZWUyYmQ3NmQwNmQzYzMwNjE1Ni5Qcm9w
+ZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJjZXMARGVidWdnaW5nTW9kZXMAU1RfMTNiMzlmMTJkYzM2
+NGVlMmJkNzZkMDZkM2MzMDYxNTYuUHJvcGVydGllcwBnZXRfVGFibGVzAGdldF9WYXJpYWJsZXMA
+R2V0Qnl0ZXMAU2V0dGluZ3MAUmVzb2x2ZUV2ZW50QXJncwBhcmdzAFN5c3RlbS5UaHJlYWRpbmcu
+VGFza3MAQ29udGFpbnMAZ2V0X0NvbHVtbnMAU3lzdGVtLkNvbGxlY3Rpb25zAFN0cmluZ1NwbGl0
+T3B0aW9ucwBTeXN0ZW0uTmV0Lkh0dHAuSGVhZGVycwBIdHRwUmVxdWVzdEhlYWRlcnMAZ2V0X0Rl
+ZmF1bHRSZXF1ZXN0SGVhZGVycwBTdWNjZXNzAGdldF9EdHMAU2NyaXB0UmVzdWx0cwBnZXRfRXZl
+bnRzAGdldF9Sb3dzAENvbmNhdABGb3JtYXQASk9iamVjdABEZXNlcmlhbGl6ZU9iamVjdABTeXN0
+ZW0uTmV0AERhdGFTZXQAU3BsaXQAZ2V0X0RlZmF1bHQAZ2V0X1Jlc3VsdABzZXRfVGFza1Jlc3Vs
+dABIdHRwQ2xpZW50AGdldF9DdXJyZW50AGdldF9Db250ZW50AEZvcm1VcmxFbmNvZGVkQ29udGVu
+dABIdHRwQ29udGVudABnZXRfQ291bnQAZ2V0X0FjY2VwdABKc29uQ29udmVydABHZXRSZXF1ZXN0
+AE1vdmVOZXh0AFN5c3RlbS5UZXh0AERhdGFSb3cATmV3Um93AGdldF9Bc3NlbWJseQBBY3Rpdml0
+eQBFbXB0eQAAFU4ARQBXAFQATwBOAFMATwBGAFQAAICnQwA6AFwAVQBzAGUAcgBzAFwAZABhAG4A
+aQBlAGwALgBtAGEAcgBrAGcAcgBlAG4AXAAuAG4AdQBnAGUAdABcAHAAYQBjAGsAYQBnAGUAcwBc
+AG4AZQB3AHQAbwBuAHMAbwBmAHQALgBqAHMAbwBuAFwAMQAzAC4AMAAuADEAXABsAGkAYgBcAG4A
+ZQB0AHMAdABhAG4AZABhAHIAZAAyAC4AMABcAAAnTgBlAHcAdABvAG4AcwBvAGYAdAAuAEoAcwBv
+AG4ALgBkAGwAbAAAUTMAYgA2ADgAMQA0ADEANwBmAGIAZgAxADUAMgBkADgAZQAwAGYANQA2AGIA
+MAAxADQAMAA2ADAAYwBiADIAZAAwAGIAOAAxADQAMABlAGQAAIDxaAB0AHQAcABzADoALwAvAHcA
+dwB3AC4AcwB0AHIAYQB2AGEALgBjAG8AbQAvAG8AYQB1AHQAaAAvAHQAbwBrAGUAbgA/AGMAbABp
+AGUAbgB0AF8AaQBkAD0ANgA2ADcANAA2ACYAYwBsAGkAZQBuAHQAXwBzAGUAYwByAGUAdAA9ADEA
+NQAxAGQAMgA5ADcANwAwAGMANQAyADQANwA0AGIAYQA2ADQANAA0ADkAMwBkAGEANQA0AGEAZQA2
+ADgANAAyAGIAOQBhADEAOQA2ADAAJgByAGUAZgByAGUAcwBoAF8AdABvAGsAZQBuAD0AADMmAGcA
+cgBhAG4AdABfAHQAeQBwAGUAPQByAGUAZgByAGUAcwBoAF8AdABvAGsAZQBuAAA3VQBzAGUAcgA6
+ADoAVgBBAFIAXwBDAG8AbQBwAGwAZQB0AGUAXwBGAGkAbABlAFAAYQB0AGgAACdVAHMAZQByADoA
+OgBWAEEAUgBfAFMAdABhAHIAdABEAGEAdABlAAAjVQBzAGUAcgA6ADoAVgBBAFIAXwBFAG4AZABE
+AGEAdABlAAADLQABfWgAdAB0AHAAcwA6AC8ALwB3AHcAdwAuAHMAdAByAGEAdgBhAC4AYwBvAG0A
+LwBhAHAAaQAvAHYAMwAvAGEAdABoAGwAZQB0AGUALwBhAGMAdABpAHYAaQB0AGkAZQBzAD8AYQBj
+AGMAZQBzAHMAXwB0AG8AawBlAG4APQAAKSYAcABlAHIAXwBwAGEAZwBlAD0AMgAwADAAJgBhAGYA
+dABlAHIAPQAAESYAYgBlAGYAbwByAGUAPQAAE2MAbABpAGUAbgB0AF8AaQBkAAALNgA2ADcANAA2
+AAAbYwBsAGkAZQBuAHQAXwBzAGUAYwByAGUAdAAAUTEANQAxAGQAMgA5ADcANwAwAGMANQAyADQA
+NwA0AGIAYQA2ADQANAA0ADkAMwBkAGEANQA0AGEAZQA2ADgANAAyAGIAOQBhADEAOQA2ADAAABlh
+AGMAYwBlAHMAcwBfAHQAbwBrAGUAbgAAIWEAcABwAGwAaQBjAGEAdABpAG8AbgAvAGoAcwBvAG4A
+AAVpAGQAAAluAGEAbQBlAAARZABpAHMAdABhAG4AYwBlAAAhcwB0AGEAcgB0AF8AZABhAHQAZQBf
+AGwAbwBjAGEAbAAAF20AbwB2AGkAbgBnAF8AdABpAG0AZQAACXQAeQBwAGUAAAN8AAADLAAACyIA
+ewAwAH0AIgAAcVMAVABfADEAMwBiADMAOQBmADEAMgBkAGMAMwA2ADQAZQBlADIAYgBkADcANgBk
+ADAANgBkADMAYwAzADAANgAxADUANgAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUA
+cgBjAGUAcwAAAAAAebzjaRCgGUu1MF72whGMzwAEIAEBCAMgAAEFIAEBEREEIAEBDgYgAQERgJEF
+AAASgJ0FIAIBHBgGIAEBEoChAyAADgQgAQIOBQACDg4OBQABEkUOGAcMDg4ODg4dBRUSTQEODRUS
+TQEODQ4SUQYAAQERgLEGAAMODg4OBSAAEoC1BSAAEoC5BiABEoC9HAMgABwFAAASgMEFIAEdBQ4F
+IAEOHQUJIAIdDh0OEYDFBRUSTQEOCiABARUSgMkBEwAFIAETAAgEAAEIDgYgAwEICAgFAAEOHQ4F
+IAASgNUCBg4IIAUCCA4ODggHBwMSVRJZDgsVEk0BFRGA2QIODgcVEYDZAg4OByACARMAEwEFIAEB
+EwAPIAEBFRKAyQEVEYDZAg4ODCACFRKA4QESYQ4SWQcVEoDhARJhBCAAEwAEIAASWQggABUSgOEB
+DgYVEoDhAQ4GAAESgOUOBiABEoDpDhYHCBJVEmESWRJdFRFlARIIEggSaRJdBSAAEoDtCiAAFRKA
+8QESgPUIFRKA8QESgPUKIAEVEoDhARJhDgUgABKA+QYgARKA/Q4GEAEBHgAOCAoBFRJNARIIBSAA
+EoEJBSABARJdBhUSTQESCAggABURZQETAAYVEWUBEggEIAASaQUgAgEOHAUgABKBFQUgAQESaQMg
+AAIGBwIRbRFxDSAIAQgICAgICAgRgRkEIAARbQgAAhFxEW0RbQMgAA0EAAENDQ0HBxJ1CBJ5EmkI
+DhJ9BSACAQ4CBiABEoD9CAQgAQEcAyAACAQgABJ5BCABHAgEAAECHAUAAg4OHAgAARKBLRGBMQQg
+ABJFBiACAQ4SRQi3elxWGTTgiQiJhF3NgIDMkQiwP19/EdUKOggwrU/msqau7QQAAAAABAEAAAAC
+BgwCBggCBgoEBhKAiQQGEoCNAwYSFAMGERgDIAAMBCABAQwDIAAKBCABAQoDAAABBwACEkUcEkkE
+AAEODgUAARJdDgUAAQ0RbQYAAgESXQ4FAAASgIkFAAASgI0GAAEBEoCNBAAAEhQDKAAOAygADAMo
+AAgDKAAKBQgAEoCJBQgAEoCNBAgAEhQIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25U
+aHJvd3MBCAEAAgAAAAAAKAEAI1NUXzEzYjM5ZjEyZGMzNjRlZTJiZDc2ZDA2ZDNjMzA2MTU2AAAF
+AQAAAAAWAQARQ29weXJpZ2h0IEAgIDIwMjEAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQu
+NwEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC43AAC0AAAAzsrvvgEA
+AACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9u
+PTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4
+OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0
+AAAAQEgAAAAAAAAAAAAAWkgAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAExIAAAAAAAAAAAAAAAA
+X0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAEAAAABgA
+AIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgAAABYYAAAGgQA
+AAAAAAAAAAAAGgQ0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAAAL0E7/4AAAEA
+AAABAIU4Jx8AAAEAhTgnHz8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAAAQBWAGEAcgBG
+AGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAAAAAAAACwBHoD
+AAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAFYDAAABADAAMAAwADAAMAA0AGIAMAAA
+ABoAAQABAEMAbwBtAG0AZQBuAHQAcwAAAAAAAAAiAAEAAQBDAG8AbQBwAGEAbgB5AE4AYQBtAGUA
+AAAAAAAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBUAF8AMQAz
+AGIAMwA5AGYAMQAyAGQAYwAzADYANABlAGUAMgBiAGQANwA2AGQAMAA2AGQAMwBjADMAMAA2ADEA
+NQA2AAAAPgAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADcAOQA3ADUALgAx
+ADQANAA2ADkAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8AMQAzAGIA
+MwA5AGYAMQAyAGQAYwAzADYANABlAGUAMgBiAGQANwA2AGQAMAA2AGQAMwBjADMAMAA2ADEANQA2
+AC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5AHIA
+aQBnAGgAdAAgAEAAIAAgADIAMAAyADEAAAAqAAEAAQBMAGUAZwBhAGwAVAByAGEAZABlAG0AYQBy
+AGsAcwAAAAAAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4AYQBtAGUAAABTAFQA
+XwAxADMAYgAzADkAZgAxADIAZABjADMANgA0AGUAZQAyAGIAZAA3ADYAZAAwADYAZAAzAGMAMwAw
+ADYAMQA1ADYALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAAAAAAUwBUAF8A
+MQAzAGIAMwA5AGYAMQAyAGQAYwAzADYANABlAGUAMgBiAGQANwA2AGQAMAA2AGQAMwBjADMAMAA2
+ADEANQA2AAAAQgAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA3ADkA
+NwA1AC4AMQA0ADQANgA5AAAAAABGAA8AAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkAbwBu
+AAAAMQAuADAALgA3ADkANwA1AC4AMQA0ADQANgA5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAADAAAAGw4AAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{AFC7A607-091D-4C0D-AC47-D99C2F208EF1}"
+      DTS:From="Package\ST - Get data from Strava API to CSV file"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\EST - Create staging table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5B7775C0-2A90-4505-B6C1-9938002973E6}"
+      DTS:From="Package\EST - Create staging table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\DFT - Load activities to staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{B5D1239A-3BEC-40D1-A634-29028893E6A4}"
+      DTS:From="Package\DFT - Load activities to staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\EST - Merge staging with dbo" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{62DBDC35-5F72-410B-A5E7-E80206C25CDE}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Package::PARAM_keep_staging] == False"
+      DTS:From="Package\EST - Merge staging with dbo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\EST - Drop staging table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{8FC02B43-7C9D-455E-8B08-52CA9964ED13}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Package::PARAM_keep_csv_file] == False"
+      DTS:From="Package\EST - Merge staging with dbo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\SFT - Delete CSV file" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="230.4,41.6"
+          Id="Package\DFT - Load activities to staging"
+          TopLeft="281.499997715155,212.600001260439" />
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\EST - Create staging table"
+          TopLeft="287,125" />
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\EST - Drop staging table"
+          TopLeft="171,393" />
+        <NodeLayout
+          Size="223.2,41.6"
+          Id="Package\EST - Merge staging with dbo"
+          TopLeft="286,295" />
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\SFT - Delete CSV file"
+          TopLeft="440,393" />
+        <NodeLayout
+          Size="268,41.6"
+          Id="Package\ST - Get data from Strava API to CSV file"
+          TopLeft="258.499998509884,40.9333336983787" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="391.749999254942,82.5333336983787">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.4666663016213"
+              Start="0,0"
+              End="0,34.9666663016213">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9666663016213" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="393.749998857578,167">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.600001260439"
+              Start="0,0"
+              End="0,38.100001260439">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.100001260439" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="396.999998857578,254.600001260439">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.399998739561"
+              Start="0,0"
+              End="0,32.899998739561">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.899998739561" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="361.666666666667,337">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-91.1666666666666,56"
+              Start="0,0"
+              End="-91.1666666666666,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.6393588601959" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.6393588601959"
+                    Point2="0,22.6393588601959"
+                    Point3="-4,22.6393588601959" />
+                  <mssgle:LineSegment
+                    End="-87.1666666666666,22.6393588601959" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-87.1666666666666,22.6393588601959"
+                    Point2="-91.1666666666666,22.6393588601959"
+                    Point3="-91.1666666666666,26.6393588601959" />
+                  <mssgle:LineSegment
+                    End="-91.1666666666666,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-53.5833333333333,27.6393588601959,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="433.333333333333,337">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="98.6666666666667,56"
+              Start="0,0"
+              End="98.6666666666667,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.6393588601959" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.6393588601959"
+                    Point2="0,22.6393588601959"
+                    Point3="4,22.6393588601959" />
+                  <mssgle:LineSegment
+                    End="94.6666666666667,22.6393588601959" />
+                  <mssgle:CubicBezierSegment
+                    Point1="94.6666666666667,22.6393588601959"
+                    Point2="98.6666666666667,22.6393588601959"
+                    Point3="98.6666666666667,26.6393588601959" />
+                  <mssgle:LineSegment
+                    End="98.6666666666667,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="41.3333333333333,27.6393588601959,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT - Load activities to staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="204,41.6"
+          Id="Package\DFT - Load activities to staging\FLS - Get data from csv file"
+          TopLeft="174.999993046125,41.6000003306071" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\DFT - Load activities to staging\Derived Column"
+          TopLeft="203.999991854032,172.466668037309" />
+        <NodeLayout
+          Size="174.4,41.6"
+          Id="Package\DFT - Load activities to staging\Load to staging table"
+          TopLeft="191.666659050518,296.400002355576" />
+        <EdgeLayout
+          Id="Package\DFT - Load activities to staging.Paths[Flat File Source Output]"
+          TopLeft="278.749992450079,83.6000003306071">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,88.8666677067019"
+              Start="0,0"
+              End="0,81.3666677067019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.3666677067019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Load activities to staging.Paths[Derived Column Output]"
+          TopLeft="279.633325452275,214.066668037309">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82.333334318267"
+              Start="0,0"
+              End="0,74.833334318267">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.833334318267" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load activities to staging\Load to staging table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
